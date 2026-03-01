@@ -1,0 +1,10 @@
+Email Client Configuration Settings
+Use this information when setting up your email in Gmail, Outlook, your phone and any other email client. If your ISP (Internet Service Provider) is blocking port 587 and you're unable to connect you can try our alternative STARTTLS port 50587.
+
+Service	Hostname	Port	Security
+SMTP	smtp.porkbun.com	587	STARTTLS
+SMTP	smtp.porkbun.com	50587	STARTTLS Alt.
+SMTP	smtp.porkbun.com	465	Implicit TLS
+IMAP	imap.porkbun.com	993	SSL (SSL/TLS)
+POP	pop.porkbun.com	995	SSL (SSL/TLS)
+Webmail	webmail.porkbun.com		

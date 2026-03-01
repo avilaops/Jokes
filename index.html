@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitão América: Beba Água! 💧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '💧';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+
+        .hero-section {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, #f0f9ff 0%, #ffffff 100%);
+        }
+
+        .captain-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .captain-image:hover {
+            transform: scale(1.05);
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            padding: 30px;
+            margin: 30px 20px;
+            border-radius: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .info-section {
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 40px 20px;
+            margin: 30px 20px;
+            border-radius: 20px;
+        }
+
+        .tips-section h2 {
+            color: #2d3436;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tips-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tips-list li {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.3em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tips-list li::before {
+            content: '✅';
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .water-tracker {
+            background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .water-tracker h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .glasses-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .glass {
+            width: 60px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .glass:hover {
+            transform: scale(1.1);
+        }
+
+        .glass.filled {
+            background: linear-gradient(to top, #3498db 0%, #5dade2 100%);
+        }
+
+        .glass-label {
+            position: absolute;
+            bottom: -25px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .footer strong {
+            color: #ffeaa7;
+            font-size: 1.3em;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .message-box {
+                font-size: 1.4em;
+            }
+
+            .tips-section h2,
+            .water-tracker h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💧 MISSÃO: BEBER ÁGUA! 💧</h1>
+            <p class="subtitle">O Capitão América precisa de você!</p>
+        </div>
+
+        <div class="hero-section">
+            <img src="captain-america.jpg" alt="Capitão América quer que você beba água" class="captain-image">
+        </div>
+
+        <div class="message-box">
+            EU QUERO VOCÊ BEBENDO ÁGUA AGORA! 💪💧
+        </div>
+
+        <div class="info-section">
+            <h2 style="text-align: center; font-size: 2.5em; color: #2d3436; margin-bottom: 20px;">
+                Por que beber água é SUPER importante?
+            </h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Cérebro Forte</h3>
+                    <p>Água deixa seu cérebro esperto e você consegue aprender melhor!</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h3>Músculos Fortes</h3>
+                    <p>Seus músculos precisam de água para ficarem fortes como os do Capitão!</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Muita Energia</h3>
+                    <p>Água te dá energia para brincar o dia todo sem cansar!</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">😊</div>
+                    <h3>Pele Bonita</h3>
+                    <p>Sua pele fica saudável e bonita quando você bebe água!</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌡️</div>
+                    <h3>Corpo Fresquinho</h3>
+                    <p>A água mantém seu corpo na temperatura perfeita!</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏃</div>
+                    <h3>Super Atleta</h3>
+                    <p>Você corre, pula e brinca muito melhor quando está hidratado!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>🌟 Dicas do Capitão América 🌟</h2>
+            <ul class="tips-list">
+                <li>Beba água ao acordar para começar o dia com energia!</li>
+                <li>Leve uma garrafinha de água para a escola</li>
+                <li>Beba água antes, durante e depois de brincar</li>
+                <li>Quando sentir sede, já é hora de beber água!</li>
+                <li>Água é melhor que refrigerante para ser forte!</li>
+                <li>Beba pelo menos 6 a 8 copos de água por dia</li>
+            </ul>
+        </div>
+
+        <div class="water-tracker">
+            <h2>🏆 Rastreador de Água do Dia 🏆</h2>
+            <p style="font-size: 1.5em; margin-bottom: 20px;">Clique nos copos quando beber água!</p>
+            <div class="glasses-container" id="glassesContainer">
+                <!-- Copos serão criados pelo JavaScript -->
+            </div>
+            <p id="progress" style="font-size: 1.8em; margin-top: 20px; font-weight: bold;">0/8 copos bebidos hoje!</p>
+        </div>
+
+        <div class="footer">
+            <p style="font-size: 1.5em; margin-bottom: 15px;">⭐ Lembre-se: Super-heróis bebem água! ⭐</p>
+            <p><strong>Você também pode ser um super-herói bebendo água todos os dias! 💧</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Criar os copos de água
+        const glassesContainer = document.getElementById('glassesContainer');
+        const progress = document.getElementById('progress');
+        const totalGlasses = 8;
+        let filledGlasses = 0;
+
+        // Carregar progresso salvo
+        if (localStorage.getItem('waterProgress')) {
+            filledGlasses = parseInt(localStorage.getItem('waterProgress'));
+        }
+
+        // Criar copos
+        for (let i = 0; i < totalGlasses; i++) {
+            const glass = document.createElement('div');
+            glass.classList.add('glass');
+            glass.setAttribute('data-index', i);
+            
+            if (i < filledGlasses) {
+                glass.classList.add('filled');
+            }
+
+            glass.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                
+                if (this.classList.contains('filled')) {
+                    // Se clicar em um copo cheio, esvazia ele e todos depois dele
+                    filledGlasses = index;
+                    updateGlasses();
+                } else {
+                    // Enche até esse copo
+                    filledGlasses = index + 1;
+                    updateGlasses();
+                    
+                    // Animação de comemoração
+                    if (filledGlasses === totalGlasses) {
+                        celebrate();
+                    }
+                }
+                
+                updateProgress();
+                saveProgress();
+            });
+
+            glassesContainer.appendChild(glass);
+        }
+
+        function updateGlasses() {
+            const glasses = document.querySelectorAll('.glass');
+            glasses.forEach((glass, index) => {
+                if (index < filledGlasses) {
+                    glass.classList.add('filled');
+                } else {
+                    glass.classList.remove('filled');
+                }
+            });
+        }
+
+        function updateProgress() {
+            progress.textContent = `${filledGlasses}/${totalGlasses} copos bebidos hoje!`;
+            
+            if (filledGlasses === totalGlasses) {
+                progress.innerHTML = `🎉 ${filledGlasses}/${totalGlasses} copos - VOCÊ É UM SUPER-HERÓI! 🎉`;
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem('waterProgress', filledGlasses);
+        }
+
+        function celebrate() {
+            // Cria confetes
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#ffa07a', '#98d8c8', '#f7dc6f'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    document.body.appendChild(confetti);
+
+                    const fall = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight + 10}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 2000 + 1000,
+                        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                    });
+
+                    fall.onfinish = () => confetti.remove();
+                }, i * 30);
+            }
+        }
+
+        // Atualizar progresso inicial
+        updateProgress();
+
+        // Reset diário à meia-noite
+        const now = new Date();
+        const night = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate() + 1,
+            0, 0, 0
+        );
+        const msToMidnight = night.getTime() - now.getTime();
+
+        setTimeout(() => {
+            filledGlasses = 0;
+            updateGlasses();
+            updateProgress();
+            saveProgress();
+            
+            // Configurar reset diário
+            setInterval(() => {
+                filledGlasses = 0;
+                updateGlasses();
+                updateProgress();
+                saveProgress();
+            }, 24 * 60 * 60 * 1000);
+        }, msToMidnight);
+    </script>
+</body>
+</html>
