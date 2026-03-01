@@ -1,7 +1,10 @@
 import os
 import smtplib
+import base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 # Carregar variáveis do .env manualmente
 def load_env():
@@ -68,7 +71,7 @@ def send_test_email():
         print("\n❌ ERRO: Você precisa substituir 'SUA_SENHA_DO_EMAIL_AQUI' pela senha real do seu email!")
         return
     
-    subject = "💧 Lembrete Diário: Você é uma MÁQUINA DE VENCER! 💪"
+    subject = "Lembrete do Capitão América 🇺🇸"
     
     print(f"\n📬 Conectando ao servidor SMTP do Porkbun...")
     
@@ -82,15 +85,34 @@ def send_test_email():
         
         print(f"✅ Login bem-sucedido!")
         
+        # Ler e anexar imagem
+        print(f"🖼️  Anexando imagem inline...")
+        with open('capitain-america.avif', 'rb') as img_file:
+            img_data = img_file.read()
+        
         # Enviar para cada destinatário
         for to_email in to_emails_list:
-            msg = MIMEMultipart('alternative')
+            msg = MIMEMultipart('related')
             msg['Subject'] = subject
             msg['From'] = from_email
             msg['To'] = to_email
             
-            html_part = MIMEText(html_content, 'html', 'utf-8')
+            # Substituir URL da imagem por CID inline  
+            html_with_inline = html_content.replace(
+                'https://raw.githubusercontent.com/avilaops/Jokes/master/capitain-america.avif',
+                'cid:captain_image'
+            )
+            
+            html_part = MIMEText(html_with_inline, 'html', 'utf-8')
             msg.attach(html_part)
+            
+            # Anexar imagem inline usando MIMEBase para suportar AVIF
+            img_part = MIMEBase('image', 'avif')
+            img_part.set_payload(img_data)
+            encoders.encode_base64(img_part)
+            img_part.add_header('Content-ID', '<captain_image>')
+            img_part.add_header('Content-Disposition', 'inline', filename='captain.avif')
+            msg.attach(img_part)
             
             print(f"📤 Enviando para {to_email}...")
             server.send_message(msg)

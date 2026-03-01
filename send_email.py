@@ -2,6 +2,8 @@ import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 def load_email_list():
     """Carrega a lista de emails do arquivo emails_list.txt"""
@@ -36,7 +38,11 @@ def send_daily_reminder():
     smtp_password = os.environ.get('SMTP_PASSWORD')
     from_email = os.environ.get('FROM_EMAIL')
     
-    subject = "💧 Lembrete Diário: Você é uma MÁQUINA DE VENCER! 💪"
+    subject = "Lembrete do Capitão América 🇺🇸"
+    
+    # Ler imagem para anexar inline
+    with open('capitain-america.avif', 'rb') as img_file:
+        img_data = img_file.read()
     
     try:
         # Conectar ao servidor SMTP
@@ -48,13 +54,27 @@ def send_daily_reminder():
         for to_email in to_emails:
             to_email = to_email.strip()
             
-            msg = MIMEMultipart('alternative')
+            msg = MIMEMultipart('related')
             msg['Subject'] = subject
             msg['From'] = from_email
             msg['To'] = to_email
             
-            html_part = MIMEText(html_content, 'html', 'utf-8')
+            # Substituir URL da imagem por CID inline
+            html_with_inline = html_content.replace(
+                'https://raw.githubusercontent.com/avilaops/Jokes/master/capitain-america.avif',
+                'cid:captain_image'
+            )
+            
+            html_part = MIMEText(html_with_inline, 'html', 'utf-8')
             msg.attach(html_part)
+            
+            # Anexar imagem inline usando MIMEBase
+            img_part = MIMEBase('image', 'avif')
+            img_part.set_payload(img_data)
+            encoders.encode_base64(img_part)
+            img_part.add_header('Content-ID', '<captain_image>')
+            img_part.add_header('Content-Disposition', 'inline', filename='captain.avif')
+            msg.attach(img_part)
             
             server.send_message(msg)
             print(f"Email enviado para {to_email}!")
