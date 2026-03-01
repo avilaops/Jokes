@@ -87,7 +87,7 @@ def send_test_email():
         
         # Ler e anexar imagem
         print(f"🖼️  Anexando imagem inline...")
-        with open('capitain-america.avif', 'rb') as img_file:
+        with open('capitain-america.jpg', 'rb') as img_file:
             img_data = img_file.read()
         
         # Enviar para cada destinatário
@@ -106,12 +106,12 @@ def send_test_email():
             html_part = MIMEText(html_with_inline, 'html', 'utf-8')
             msg.attach(html_part)
             
-            # Anexar imagem inline usando MIMEBase para suportar AVIF
-            img_part = MIMEBase('image', 'avif')
+            # Anexar imagem inline JPG (100% compatível com emails)
+            img_part = MIMEBase('image', 'jpeg')
             img_part.set_payload(img_data)
             encoders.encode_base64(img_part)
             img_part.add_header('Content-ID', '<captain_image>')
-            img_part.add_header('Content-Disposition', 'inline', filename='captain.avif')
+            img_part.add_header('Content-Disposition', 'inline', filename='captain.jpg')
             msg.attach(img_part)
             
             print(f"📤 Enviando para {to_email}...")

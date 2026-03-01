@@ -41,7 +41,7 @@ def send_daily_reminder():
     subject = "Lembrete do Capitão América 🇺🇸"
     
     # Ler imagem para anexar inline
-    with open('capitain-america.avif', 'rb') as img_file:
+    with open('capitain-america.jpg', 'rb') as img_file:
         img_data = img_file.read()
     
     try:
@@ -68,12 +68,12 @@ def send_daily_reminder():
             html_part = MIMEText(html_with_inline, 'html', 'utf-8')
             msg.attach(html_part)
             
-            # Anexar imagem inline usando MIMEBase
-            img_part = MIMEBase('image', 'avif')
+            # Anexar imagem inline JPG (100% compatível)
+            img_part = MIMEBase('image', 'jpeg')
             img_part.set_payload(img_data)
             encoders.encode_base64(img_part)
             img_part.add_header('Content-ID', '<captain_image>')
-            img_part.add_header('Content-Disposition', 'inline', filename='captain.avif')
+            img_part.add_header('Content-Disposition', 'inline', filename='captain.jpg')
             msg.attach(img_part)
             
             server.send_message(msg)
