@@ -1,0 +1,4 @@
+# Lista de Emails - Um por linha
+# Adicione os emails que vão receber o lembrete diário
+
+nicolasrosaab@gmail.com
