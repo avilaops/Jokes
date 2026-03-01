@@ -1,1 +1,2 @@
-sendgrid==6.11.0
+# Nenhuma dependência externa necessária
+# Python SMTP é nativo da biblioteca padrão

@@ -1,0 +1,23 @@
+# Arquivo com senhas e configurações sensíveis
+.env
+
+# Lista de emails (privada)
+emails_list.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

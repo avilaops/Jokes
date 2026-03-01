@@ -27,8 +27,10 @@ jobs:
     
     - name: Enviar email
       env:
-        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        SMTP_HOST: smtp.porkbun.com
+        SMTP_PORT: 587
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
-        TO_EMAILS: ${{ secrets.TO_EMAILS }}
       run: |
         python send_email.py
