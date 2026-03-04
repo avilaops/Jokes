@@ -1,13 +1,14 @@
 # Lista de Emails - Um por linha
 # Adicione os emails que vão receber o lembrete diário
 
-nicolasrosaab@gmail.com
 guilhermerosaabarros@gmail.com
 jefersonroncato@gmail.com
 jonasroncato@gmail.com
-advocaciaalvarodiasdias@gmail.com
 renatoavilabarrosr86@gmail.com
 flaviodriguesrs@gmail.com
 brunoluismoraes@gmail.com
 eltonrsabadini@cofcointernational.com
 advocaciaalvarodias@gmail.com
+pereira.victor@nestle.com.br
+Pereira.Victor@br.nestle.com
+Victor.Pereira@br.nestle.com
